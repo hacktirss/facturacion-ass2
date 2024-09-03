@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Properties>
+        <Property name="LOG_PATH">/home/ass2/Facturador/logs/</Property>
+        <Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %-45.45cml %msg%n%throwable</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="MAINLOGGER" fileName="${LOG_PATH}/Facturador2.log" filePattern="${LOG_PATH}/Facturador2.log.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="main" additivity="true" level="debug">
+            <AppenderRef ref="Console" />
+        </Logger>        
+        <Root level="debug" additivity="true">
+            <AppenderRef ref="MAINLOGGER" />
+        </Root>
+    </Loggers>
+</Configuration>
